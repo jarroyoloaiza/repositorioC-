@@ -9,18 +9,27 @@ namespace Acitvidad._2
     class Program
     {
         static int horassemana, horas1, horasfinde, horas2, valor, valorhora, mes, mes1,
-                    año, año1, rut, rut1;
-        static string nom, nombre;
+                    año, año1, rut, rut1, anti, anticipo, desc, descuento, bon, bonos;
+        static double pagosemana, pagofinde, sueldo;
+        static string nom, nombre, ape, apellidos;
         static void Main(string[] args)
         {
             
             cantidadhorasemana();
             cantidadhorasfinde();
             Valorhora();
+            Pagosemana();
+            PagoFinde();
             Mes();
+            
             Año();
             Rut();
             Nombre();
+            Apellidos();
+
+            Anticipos();
+            Descuento();
+            Bonos();
             Mostrar();
         }
             static void cantidadhorasemana()
@@ -68,6 +77,21 @@ namespace Acitvidad._2
                         Console.WriteLine("Ingrese solo numeros!");
                         Valorhora();
                     }
+            }
+            static double Pagosemana()
+            {
+                pagosemana = (horassemana * valorhora);
+                return pagosemana;
+            }
+            static double PagoFinde()
+            {
+                pagofinde = horasfinde * (valorhora*1.5);
+                return pagofinde;
+            }
+            static double Sueldo()
+            {
+                sueldo = pagosemana+pagofinde;
+                return sueldo;
             }
             static void Mes()
                 {
@@ -147,24 +171,95 @@ namespace Acitvidad._2
                         nombre = nom;
                         
                     }
-                    catch(
+                    catch(ArgumentException)
                     {
                         Nombre();
                     }
              }
+            static void Apellidos()
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese sus Apellidos: ");
+                    ape = Console.ReadLine();
+                    apellidos = ape;
+
+                }
+                catch
+                {
+                    Apellidos();
+                }
+            }
+
+            static void Anticipos()
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese Anticipo Otorgado: ");
+                    anti = Convert.ToInt32(Console.ReadLine());
+                    anticipo = anti;
+
+                }
+                
+                catch (FormatException)
+                {
+                    Console.WriteLine("Ingrese solo numeros!");
+                    Anticipos();
+                }
+            }
+            static void Descuento()
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese Descuento: ");
+                    desc = Convert.ToInt16(Console.ReadLine());
+                    descuento = desc;
+
+                }
+
+                catch (FormatException)
+                {
+                    Console.WriteLine("Ingrese solo numeros!");
+                    Descuento();
+                }
+            }
+            static void Bonos()
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese Bonos Otorgados: ");
+                    bon = Convert.ToInt16(Console.ReadLine());
+                    bonos = bon;
+
+                }
+
+                catch (FormatException)
+                {
+                    Console.WriteLine("Ingrese solo numeros!");
+                    Bonos();
+                }
+            }
             static void Mostrar()
             {
                 
                 Console.Clear();
                 System.Console.BackgroundColor = ConsoleColor.Blue;
                 System.Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(nombre + "  Rut: " + rut);
+                Console.WriteLine(nombre + "  " + apellidos + "  Rut: " + rut);
                 Console.WriteLine("Horas Normales:- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + horas1);
                 Console.WriteLine("Horas Fines de Semana: - - - - - - - - - - - - - - - - - - - - - - - - - - " + horas2);
                 Console.WriteLine("Valor Hora: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + valorhora);
                 Console.WriteLine("Mes : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + mes1);
                 Console.WriteLine("Año : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + año1);
-                Console.WriteLine("Sueldo : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "); // + sueldo1);
+                Console.WriteLine("AFP : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " );
+                Console.WriteLine("DES SALUD : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  ");
+                Console.WriteLine("Anticipo : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  " + anticipo);
+                Console.WriteLine("Descuento : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + descuento);
+                Console.WriteLine("Bonos : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + bonos);
+                Console.WriteLine("total semana: - - - - - - - - - - - - - - - - - - - - - - - - - - " + pagosemana);
+                Console.WriteLine("Total Fines de Semana: - - - - - - - - - - - - - - - - - - - - - - - - - - " + pagofinde);
+
+                Console.WriteLine("Sueldo Liquido : - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + sueldo);
 
                 Console.ReadKey();
             }
