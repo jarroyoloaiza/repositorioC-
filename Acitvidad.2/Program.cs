@@ -8,13 +8,19 @@ namespace Acitvidad._2
 {
     class Program
     {
-        static int horassemana, horas1, horasfinde, horas2, valor, valorhora;  
+        static int horassemana, horas1, horasfinde, horas2, valor, valorhora, mes, mes1,
+                    año, año1, rut, rut1;
+        static string nom, nombre;
         static void Main(string[] args)
         {
             
             cantidadhorasemana();
             cantidadhorasfinde();
             Valorhora();
+            Mes();
+            Año();
+            Rut();
+            Nombre();
             Mostrar();
         }
             static void cantidadhorasemana()
@@ -63,16 +69,103 @@ namespace Acitvidad._2
                         Valorhora();
                     }
             }
+            static void Mes()
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese Mes: ");
+                        mes = Convert.ToInt16(Console.ReadLine());
+                        mes1 = mes;
+                        
+                    }
+                    catch (DivideByZeroException)
+	                {
 
+                        Console.WriteLine("Error MES NO PUEDE SER CERO");
+                        Mes();
+	                }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Ingrese solo numeros!");
+                        Mes();
+                    }
+                    if (mes1 <= 0 || mes1 > 12)
+                    {
+                        Console.WriteLine("MES FUERA DE RANGO!");
+                        Mes();
+                    }
+                }
+             static void Año()
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese Año: ");
+                        año = Convert.ToInt16(Console.ReadLine());
+                        año1 = año;
+                        
+                    }
+                    catch (DivideByZeroException)
+	                {
+
+                        Console.WriteLine("Error AÑO NO PUEDE SER CERO");
+                        Console.ReadKey();
+                        Año();
+	                }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Ingrese solo numeros!");
+                        Año();
+                    }
+             }
+             static void Rut()
+                 {
+                     try
+                     {
+                         Console.WriteLine("Ingrese su Rut: (SIN DIGITO VERIFICADOR)");
+                         rut = Convert.ToInt32(Console.ReadLine());
+                         rut1 = rut;
+                     }
+                     catch (DivideByZeroException)
+                     {
+
+                         Console.WriteLine("Error RUT NO PUEDE SER CERO");
+                         Console.ReadKey();
+                         Año();
+                     }
+                     catch (FormatException)
+                     {
+                         Console.WriteLine("Ingrese solo numeros!");
+                         Año();
+                     }
+             }
+            static void Nombre()
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese su Nombre: ");
+                        nom = Console.ReadLine();
+                        nombre = nom;
+                        
+                    }
+                    catch(
+                    {
+                        Nombre();
+                    }
+             }
             static void Mostrar()
             {
                 
                 Console.Clear();
                 System.Console.BackgroundColor = ConsoleColor.Blue;
                 System.Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(nombre + "  Rut: " + rut);
                 Console.WriteLine("Horas Normales:- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + horas1);
                 Console.WriteLine("Horas Fines de Semana: - - - - - - - - - - - - - - - - - - - - - - - - - - " + horas2);
                 Console.WriteLine("Valor Hora: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + valorhora);
+                Console.WriteLine("Mes : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + mes1);
+                Console.WriteLine("Año : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - " + año1);
+                Console.WriteLine("Sueldo : - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - "); // + sueldo1);
+
                 Console.ReadKey();
             }
         }
